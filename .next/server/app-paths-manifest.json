@@ -1,7 +1,0 @@
-{
-  "/mdcat/[branch]/page": "app/mdcat/[branch]/page.js",
-  "/fsc/grade-11/[slug]/short-questions/page": "app/fsc/grade-11/[slug]/short-questions/page.js",
-  "/fsc/grade-11/[slug]/numerical/[number]/page": "app/fsc/grade-11/[slug]/numerical/[number]/page.js",
-  "/fsc/grade-11/[slug]/page": "app/fsc/grade-11/[slug]/page.js",
-  "/mdcat/[branch]/[topic]/page": "app/mdcat/[branch]/[topic]/page.js"
-}

@@ -25,7 +25,7 @@ export default function ResourceSectionPage({ params }: { params: { section: str
   return (
     <div className="container-wide py-8">
       <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Resources', href: '/resources' }, { label: info.title }]} />
-      <div className="mt-6 mb-8">
+      <div className="page-heading-box mt-6 mb-8">
         <span className="eyebrow mb-2">{info.eyebrow}</span>
         <h1 className="text-3xl sm:text-4xl font-serif font-semibold text-ink">{info.title}</h1>
         <p className="mt-3 text-ink-muted max-w-2xl leading-relaxed">{info.description}</p>
