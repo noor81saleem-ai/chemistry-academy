@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-cream text-ink;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5 {
+    @apply font-serif text-ink font-semibold;
+    text-wrap: balance;
+  }
+
+  h1 { @apply text-3xl sm:text-4xl leading-tight; }
+  h2 { @apply text-2xl sm:text-3xl leading-snug; }
+  h3 { @apply text-xl sm:text-2xl leading-snug; }
+  h4 { @apply text-lg leading-snug; }
+
+  p { text-wrap: pretty; }
+
+  ::selection {
+    @apply bg-brand-100 text-brand-900;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-brand-500 ring-offset-2 ring-offset-cream;
+  }
+}
+
+@layer components {
+  .container-wide {
+    @apply mx-auto w-full max-w-page px-4 sm:px-6 lg:px-8;
+  }
+  .container-narrow {
+    @apply mx-auto w-full max-w-narrow px-4 sm:px-6;
+  }
+
+  .card {
+    @apply bg-paper border border-line rounded-lg shadow-soft;
+  }
+  .card-hover {
+    @apply card transition-all duration-200 hover:shadow-card hover:border-brand-200;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg text-sm font-semibold transition-all duration-150 disabled:opacity-50 disabled:pointer-events-none;
+  }
+  .btn-primary {
+    @apply btn bg-brand-700 text-white hover:bg-brand-800 px-4 py-2.5 shadow-soft;
+  }
+  .btn-outline {
+    @apply btn bg-paper text-ink border border-line hover:border-brand-300 hover:bg-brand-50 px-4 py-2.5;
+  }
+  .btn-gold {
+    @apply btn bg-gold-500 text-white hover:bg-gold-600 px-4 py-2.5 shadow-soft;
+  }
+  .btn-ghost {
+    @apply btn text-ink hover:bg-brand-50 px-3 py-2;
+  }
+  .btn-sm { @apply px-3 py-1.5 text-xs; }
+  .btn-lg { @apply px-5 py-3 text-base; }
+
+  .input {
+    @apply w-full rounded-lg border border-line bg-paper px-3.5 py-2.5 text-sm text-ink placeholder:text-ink-light transition-colors focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 focus:outline-none;
+  }
+  .label {
+    @apply block text-sm font-medium text-ink mb-1.5;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-brand-700;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium;
+  }
+  .chip-brand { @apply bg-brand-50 text-brand-700; }
+  .chip-ink { @apply bg-brand-50/40 text-ink-muted; }
+  .chip-gold { @apply bg-gold-400/20 text-gold-700; }
+
+  .link-underline {
+    @apply text-brand-700 underline decoration-brand-300 underline-offset-2 hover:text-brand-800 hover:decoration-brand-500;
+  }
+
+  .prose-chem {
+    @apply text-[1.0625rem] leading-[1.75] text-ink;
+  }
+  .prose-chem p { @apply mb-4; }
+  .prose-chem h2 { @apply mt-8 mb-3; }
+  .prose-chem h3 { @apply mt-6 mb-2; }
+  .prose-chem h4 { @apply mt-4 mb-2; }
+  .prose-chem ul { @apply mb-4 pl-5 list-disc space-y-1.5; }
+  .prose-chem ol { @apply mb-4 pl-5 list-decimal space-y-1.5; }
+  .prose-chem li { @apply leading-relaxed; }
+  .prose-chem strong { @apply font-semibold text-ink; }
+  .prose-chem em { @apply italic; }
+  .prose-chem code { @apply font-mono text-sm bg-brand-50 text-brand-800 px-1.5 py-0.5 rounded; }
+  .prose-chem blockquote {
+    @apply border-l-4 border-brand-300 bg-brand-50/50 pl-4 pr-3 py-2 my-5 italic text-ink-muted rounded-r;
+  }
+  .prose-chem table { @apply w-full text-sm border-collapse my-5; }
+  .prose-chem th { @apply bg-brand-50 text-ink font-semibold text-left px-3 py-2 border border-line; }
+  .prose-chem td { @apply px-3 py-2 border border-line align-top; }
+  .prose-chem tr:nth-child(even) td { @apply bg-brand-50/30; }
+
+  .callout {
+    @apply my-5 rounded-lg border-l-4 p-4 pl-4;
+  }
+  .callout-definition {
+    @apply callout border-brand-400 bg-brand-50/50;
+  }
+  .callout-tip {
+    @apply callout border-brand-400 bg-brand-50/40;
+  }
+  .callout-warning {
+    @apply callout border-gold-500 bg-gold-400/10;
+  }
+  .callout-example {
+    @apply callout border-line bg-brand-50/30;
+  }
+  .callout-note {
+    @apply callout border-line bg-cream;
+  }
+
+  .nav-link {
+    @apply relative inline-flex items-center gap-1 px-3 py-2 text-sm font-medium text-ink-muted rounded-md transition-colors hover:text-ink hover:bg-brand-50;
+  }
+  .nav-link-active {
+    @apply text-brand-700;
+  }
+
+  .section-title {
+    @apply text-2xl font-serif font-semibold text-ink;
+  }
+  .section-eyebrow {
+    @apply eyebrow mb-2;
+  }
+
+  .grid-pattern {
+    background-image:
+      linear-gradient(to right, rgba(15,102,85,0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(15,102,85,0.03) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}
