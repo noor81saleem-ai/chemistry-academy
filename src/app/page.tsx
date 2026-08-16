@@ -1,4 +1,7 @@
+'use client';
+
 import Link from 'next/link';
+import { useEffect, useRef, useState } from 'react';
 import {
   ArrowRight,
   BookOpen,
@@ -18,8 +21,83 @@ import { site } from '@/data/site';
 import { blogPosts } from '@/data/blog';
 import { BlogCard } from '@/components/BlogCard';
 
+
+function AnimatedCounter({
+  end,
+  suffix = '+',
+  duration = 3000,
+}: {
+  end: number;
+  suffix?: string;
+  duration?: number;
+}) {
+  const [count, setCount] = useState(1);
+  const [started, setStarted] = useState(false);
+  const ref = useRef<HTMLSpanElement | null>(null);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setStarted(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.35 }
+    );
+
+    observer.observe(node);
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!started) return;
+
+    const reduceMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+
+    if (reduceMotion) {
+      setCount(end);
+      return;
+    }
+
+    let frame = 0;
+    let startTime: number | null = null;
+
+    const animate = (time: number) => {
+      if (startTime === null) startTime = time;
+
+      const progress = Math.min((time - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const nextValue = Math.max(1, Math.floor(1 + (end - 1) * eased));
+
+      setCount(nextValue);
+
+      if (progress < 1) {
+        frame = requestAnimationFrame(animate);
+      }
+    };
+
+    frame = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(frame);
+  }, [started, end, duration]);
+
+  return (
+    <span ref={ref}>
+      {count.toLocaleString()}
+      {suffix}
+    </span>
+  );
+}
+
 export default function HomePage() {
-  const features = [
+const features = [
     {
       icon: BookOpen,
       title: 'FSc Chemistry',
@@ -49,6 +127,12 @@ export default function HomePage() {
       label: 'Browse units',
     },
   ];
+ const stats = [
+  { value: 500, suffix: '+', label: 'Chemistry Lessons' },
+  { value: 2000, suffix: '+', label: 'Practice Questions' },
+  { value: 150, suffix: '+', label: 'Study Resources' },
+  { value: 10, suffix: 'K+', label: 'Students Learning' },
+];
 
   const resourceLinks = [
     {
@@ -85,7 +169,7 @@ export default function HomePage() {
 
   return (
     <div>
-      {/* =========================================================
+{/* =========================================================
           HERO SECTION
       ========================================================== */}
       <section className="home-hero">
@@ -134,6 +218,37 @@ export default function HomePage() {
               >
                 Online Tuition
               </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+
+      {/* =========================================================
+          PROFESSIONAL COUNTING STRIP
+      ========================================================= */}
+      <section className="home-stats-wrap">
+        <div className="container-wide">
+          <div className="home-stats-container">
+            <div className="home-stats-grid">
+              {stats.map((stat, index) => (
+                <div
+                  key={`${stat.value}-${index}`}
+                  className="home-stat-item"
+                >
+                  <p className="home-stat-number">
+                    <AnimatedCounter
+                      end={stat.value}
+                      suffix={stat.suffix}
+                    />
+                  </p>
+                  <p className="home-stat-label">
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </div>

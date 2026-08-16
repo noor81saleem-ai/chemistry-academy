@@ -192,6 +192,358 @@
     @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-brand-700;
   }
 
+  /* =========================================================
+     GLOBAL PAGE TRANSITION
+     Clean chemistry atom.
+     Home = slower, internal pages = faster.
+  ========================================================= */
+
+  .page-transition-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(250, 248, 241, 0.50);
+
+    backdrop-filter: blur(0.7px);
+    -webkit-backdrop-filter: blur(0.7px);
+
+    pointer-events: none;
+  }
+
+  .page-transition-home {
+    animation:
+      page-transition-fade-out
+      0.60s
+      ease
+      1.00s
+      forwards;
+  }
+
+  .page-transition-fast {
+    animation:
+      page-transition-fade-out
+      0.28s
+      ease
+      0.50s
+      forwards;
+  }
+
+  .page-transition-atom-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 180px;
+    height: 180px;
+
+    animation:
+      page-transition-atom-enter
+      0.24s
+      ease-out
+      both;
+  }
+
+  .page-transition-atom {
+    width: 164px;
+    height: 164px;
+
+    overflow: visible;
+
+    color: #0f6655;
+
+    filter:
+      drop-shadow(
+        0 10px 18px
+        rgba(15, 102, 85, 0.14)
+      );
+  }
+
+  .page-transition-orbits {
+    transform-origin: 120px 120px;
+
+    animation:
+      page-transition-orbit-float
+      1.6s
+      ease-in-out
+      infinite
+      alternate;
+  }
+
+  .page-transition-orbit {
+    fill: none;
+
+    stroke: currentColor;
+    stroke-width: 2.6;
+    stroke-linecap: round;
+
+    stroke-dasharray: 520;
+    stroke-dashoffset: 520;
+
+    opacity: 0.96;
+  }
+
+  .page-transition-home .page-transition-orbit {
+    animation:
+      page-transition-orbit-draw-home
+      0.95s
+      cubic-bezier(0.22, 1, 0.36, 1)
+      forwards;
+  }
+
+  .page-transition-fast .page-transition-orbit {
+    animation:
+      page-transition-orbit-draw-fast
+      0.44s
+      cubic-bezier(0.22, 1, 0.36, 1)
+      forwards;
+  }
+
+  .page-transition-home .page-transition-orbit-1 {
+    animation-delay: 0.05s;
+  }
+
+  .page-transition-home .page-transition-orbit-2 {
+    animation-delay: 0.14s;
+  }
+
+  .page-transition-home .page-transition-orbit-3 {
+    animation-delay: 0.23s;
+  }
+
+  .page-transition-fast .page-transition-orbit-1 {
+    animation-delay: 0.02s;
+  }
+
+  .page-transition-fast .page-transition-orbit-2 {
+    animation-delay: 0.06s;
+  }
+
+  .page-transition-fast .page-transition-orbit-3 {
+    animation-delay: 0.10s;
+  }
+
+  .page-transition-nucleus-glow {
+    fill: rgba(15, 102, 85, 0.10);
+
+    opacity: 0;
+
+    transform-origin: 120px 120px;
+
+    animation:
+      page-transition-nucleus-glow-in
+      0.32s
+      ease-out
+      0.16s
+      forwards;
+  }
+
+  .page-transition-nucleus {
+    fill: currentColor;
+
+    opacity: 0;
+
+    transform-origin: 120px 120px;
+
+    animation:
+      page-transition-nucleus-pop
+      0.32s
+      cubic-bezier(0.22, 1, 0.36, 1)
+      0.16s
+      forwards;
+  }
+
+  .page-transition-electron {
+    fill: currentColor;
+
+    opacity: 0;
+
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  .page-transition-home .page-transition-electron {
+    animation:
+      page-transition-electron-pop
+      0.28s
+      ease-out
+      forwards;
+  }
+
+  .page-transition-fast .page-transition-electron {
+    animation:
+      page-transition-electron-pop
+      0.18s
+      ease-out
+      forwards;
+  }
+
+  .page-transition-home .page-transition-electron-1 {
+    animation-delay: 0.34s;
+  }
+
+  .page-transition-home .page-transition-electron-2 {
+    animation-delay: 0.46s;
+  }
+
+  .page-transition-home .page-transition-electron-3 {
+    animation-delay: 0.58s;
+  }
+
+  .page-transition-fast .page-transition-electron-1 {
+    animation-delay: 0.16s;
+  }
+
+  .page-transition-fast .page-transition-electron-2 {
+    animation-delay: 0.22s;
+  }
+
+  .page-transition-fast .page-transition-electron-3 {
+    animation-delay: 0.28s;
+  }
+
+  @keyframes page-transition-atom-enter {
+    from {
+      opacity: 0;
+      transform: scale(0.94);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes page-transition-orbit-draw-home {
+    from {
+      stroke-dashoffset: 520;
+      opacity: 0.15;
+    }
+
+    to {
+      stroke-dashoffset: 0;
+      opacity: 0.96;
+    }
+  }
+
+  @keyframes page-transition-orbit-draw-fast {
+    from {
+      stroke-dashoffset: 520;
+      opacity: 0.15;
+    }
+
+    to {
+      stroke-dashoffset: 0;
+      opacity: 0.96;
+    }
+  }
+
+  @keyframes page-transition-nucleus-glow-in {
+    from {
+      opacity: 0;
+      transform: scale(0.4);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes page-transition-nucleus-pop {
+    0% {
+      opacity: 0;
+      transform: scale(0.45);
+    }
+
+    70% {
+      opacity: 1;
+      transform: scale(1.06);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes page-transition-electron-pop {
+    0% {
+      opacity: 0;
+      transform: scale(0.45);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes page-transition-orbit-float {
+    from {
+      transform: translateY(-1px);
+    }
+
+    to {
+      transform: translateY(1px);
+    }
+  }
+
+  @keyframes page-transition-fade-out {
+    from {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    to {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .page-transition-atom-wrap {
+      width: 142px;
+      height: 142px;
+    }
+
+    .page-transition-atom {
+      width: 128px;
+      height: 128px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .page-transition-screen {
+      animation-duration: 0.15s;
+    }
+
+    .page-transition-atom-wrap,
+    .page-transition-orbits,
+    .page-transition-orbit,
+    .page-transition-nucleus-glow,
+    .page-transition-nucleus,
+    .page-transition-electron {
+      animation: none;
+    }
+
+    .page-transition-orbit {
+      stroke-dasharray: none;
+      stroke-dashoffset: 0;
+    }
+
+    .page-transition-nucleus-glow,
+    .page-transition-nucleus,
+    .page-transition-electron {
+      opacity: 1;
+    }
+  }
+
+
 
   /* =========================================================
      HOME HERO
@@ -246,9 +598,8 @@
   /* =========================================================
      HOME MAIN CATEGORY CARDS
 
-     IMPORTANT:
-     FSc, MDCAT, ECAT and Fundamentals all use the SAME
-     green visual system. ECAT is no longer orange.
+     FSc, MDCAT, ECAT and Fundamentals all use the same
+     ChemistryMax green visual system.
   ========================================================= */
 
   .home-category-card {
@@ -322,6 +673,136 @@
     gap: 0.625rem;
 
     color: #054c3f;
+  }
+
+  /* =========================================================
+     HOME PROFESSIONAL COUNTING STRIP
+     Hero ke neeche, category cards se upar
+  ========================================================= */
+
+  .home-stats-wrap {
+    position: relative;
+    z-index: 5;
+    margin-top: -34px;
+    padding-bottom: 2.75rem;
+  }
+
+  .home-stats-container {
+    width: 100%;
+    overflow: hidden;
+
+    background: #ffffff;
+
+    border: 1px solid rgba(15, 102, 85, 0.18);
+    border-radius: 14px;
+
+    box-shadow:
+      0 10px 28px rgba(0, 0, 0, 0.08),
+      0 3px 10px rgba(15, 102, 85, 0.05);
+  }
+
+  .home-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .home-stat-item {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 150px;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 28px 20px;
+  text-align: center;
+}
+
+  .home-stat-item:not(:last-child)::after {
+    content: '';
+
+    position: absolute;
+
+    top: 26%;
+    right: 0;
+    bottom: 26%;
+
+    width: 1px;
+
+    background: rgba(15, 102, 85, 0.14);
+  }
+
+  .home-stat-number {
+    margin: 0;
+
+    font-family: 'Source Serif 4', serif;
+    font-size: clamp(2.5rem, 4vw, 4.35rem);
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+
+    color: #0f6655 !important;
+  }
+
+  @media (max-width: 1023px) {
+    .home-stats-wrap {
+      margin-top: -24px;
+      padding-bottom: 2.25rem;
+    }
+
+    .home-stats-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .home-stat-item:nth-child(2)::after {
+      display: none;
+    }
+
+    .home-stat-item:nth-child(-n + 2) {
+      border-bottom: 1px solid rgba(15, 102, 85, 0.12);
+    }
+
+    .home-stat-item {
+      min-height: 125px;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .home-stats-wrap {
+      margin-top: -18px;
+      padding-bottom: 1.75rem;
+    }
+
+    .home-stats-container {
+      border-radius: 12px;
+    }
+
+    .home-stats-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .home-stat-item {
+      min-height: 105px;
+      padding: 20px 12px;
+    }
+
+    .home-stat-item:nth-child(odd)::after {
+      display: block;
+    }
+
+    .home-stat-item:nth-child(even)::after {
+      display: none;
+    }
+
+    .home-stat-item:nth-child(-n + 2) {
+      border-bottom: 1px solid rgba(15, 102, 85, 0.12);
+    }
+
+    .home-stat-number {
+      font-size: clamp(2rem, 11vw, 3rem);
+    }
   }
 
 
@@ -611,6 +1092,206 @@
 
 
   /* =========================================================
+     HEADER DROPDOWN SYSTEM
+     FSc / MDCAT / ECAT / Resources
+
+     All colors remain controlled from globals.css.
+  ========================================================= */
+
+  .header-shell {
+    background-color: rgba(250, 248, 241, 0.97);
+    border-bottom: 1px solid rgba(15, 102, 85, 0.14);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+
+  /* ---------------------------------------------------------
+     DESKTOP DROPDOWN CONTAINER
+  --------------------------------------------------------- */
+
+  .header-dropdown-box {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+
+    background-color: #ffffff;
+
+    border: 1px solid rgba(15, 102, 85, 0.18);
+    border-radius: 10px;
+
+    box-shadow:
+      0 12px 32px rgba(0, 0, 0, 0.10),
+      0 3px 8px rgba(15, 102, 85, 0.05);
+  }
+
+
+  /* ---------------------------------------------------------
+     PARENT LINK
+     FSc Chemistry / MDCAT Chemistry / ECAT Chemistry
+  --------------------------------------------------------- */
+
+  .header-parent-link {
+    display: block;
+    width: 100%;
+
+    color: #0f6655;
+    background-color: rgba(15, 102, 85, 0.065);
+
+    transition:
+      background-color 150ms ease,
+      color 150ms ease;
+  }
+
+  .header-parent-link:hover {
+    color: #0b584a;
+    background-color: rgba(15, 102, 85, 0.12);
+  }
+
+  .header-parent-link span {
+    display: block;
+  }
+
+
+  /* ---------------------------------------------------------
+     DIVIDER
+  --------------------------------------------------------- */
+
+  .header-dropdown-separator {
+    display: block;
+    width: 100%;
+    height: 1px;
+
+    background-color: rgba(15, 102, 85, 0.14);
+  }
+
+
+  /* ---------------------------------------------------------
+     CHILD LINKS
+  --------------------------------------------------------- */
+
+  .header-child-link {
+    display: block;
+    width: 100%;
+
+    color: #000000;
+
+    transition:
+      background-color 150ms ease,
+      color 150ms ease;
+  }
+
+  .header-child-link:hover {
+    color: #0f6655;
+    background-color: rgba(15, 102, 85, 0.07);
+  }
+
+  .header-child-link > span {
+    display: block;
+  }
+
+  .header-child-description {
+    display: block;
+
+    color: #4b4b4b;
+  }
+
+
+  /* ---------------------------------------------------------
+     SEARCH BUTTON
+  --------------------------------------------------------- */
+
+  .header-search {
+    color: #111111;
+  }
+
+  .header-search:hover {
+    color: #0f6655;
+    background-color: rgba(15, 102, 85, 0.07);
+  }
+
+
+  /* ---------------------------------------------------------
+     MOBILE MENU BUTTON
+  --------------------------------------------------------- */
+
+  .header-menu-button {
+    color: #000000;
+  }
+
+  .header-menu-button:hover {
+    background-color: rgba(15, 102, 85, 0.07);
+  }
+
+
+  /* ---------------------------------------------------------
+     MOBILE NAV AREA
+  --------------------------------------------------------- */
+
+  .header-mobile-area {
+    background-color: #faf8f1;
+
+    border-top: 1px solid rgba(15, 102, 85, 0.14);
+
+    box-shadow:
+      0 8px 18px rgba(0, 0, 0, 0.05);
+  }
+
+  .header-mobile-dropdown-button {
+    color: #000000;
+  }
+
+  .header-mobile-dropdown-button:hover {
+    background-color: rgba(15, 102, 85, 0.07);
+  }
+
+
+  /* Mobile parent */
+
+  .header-mobile-parent {
+    display: block;
+
+    color: #0f6655;
+    background-color: rgba(15, 102, 85, 0.07);
+  }
+
+  .header-mobile-parent:hover {
+    background-color: rgba(15, 102, 85, 0.12);
+  }
+
+
+  /* Mobile children */
+
+  .header-mobile-child {
+    display: block;
+
+    color: #000000;
+  }
+
+  .header-mobile-child:hover {
+    color: #0f6655;
+    background-color: rgba(15, 102, 85, 0.07);
+  }
+
+
+  /* Normal mobile links */
+
+  .header-mobile-normal {
+    display: block;
+
+    color: #000000;
+  }
+
+  .header-mobile-normal:hover {
+    background-color: rgba(15, 102, 85, 0.07);
+  }
+
+  .header-mobile-normal-active {
+    color: #0f6655;
+  }
+
+
+  /* =========================================================
      SECTION TITLES
   ========================================================= */
 
@@ -660,12 +1341,29 @@
     color: #262626 !important;
   }
 
+  /* Keep brand text colored */
   .text-brand-600,
   .text-brand-700,
   .text-brand-800,
   .text-brand-900 {
     color: revert;
   }
+
+  /* =========================================================
+     FSC MAIN PAGE HEADING META
+  ========================================================= */
+
+  .fsc-heading-meta {
+    @apply flex flex-wrap items-center justify-center gap-2 text-sm font-medium;
+  }
+
+  .fsc-heading-meta span {
+    @apply rounded-full px-3 py-1.5;
+    color: #0f6655;
+    background-color: rgba(15, 102, 85, 0.07);
+    border: 1px solid rgba(15, 102, 85, 0.14);
+  }
+
 }
 
 

@@ -31,15 +31,20 @@ export function Header() {
       ? pathname === '/'
       : pathname.startsWith(to);
 
+  const parentLabel = (label: string) => {
+    if (label === 'FSc') return 'FSc Chemistry';
+    if (label === 'MDCAT') return 'MDCAT Chemistry';
+    if (label === 'ECAT') return 'ECAT Chemistry';
+
+    return null;
+  };
+
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-cream/95 backdrop-blur-sm">
-      
+    <header className="header-shell sticky top-0 z-50">
       {/* MAIN HEADER */}
       <div className="mx-auto flex h-[76px] w-full max-w-[1500px] items-center px-4 sm:px-6 lg:px-8">
 
-        {/* =========================
-            CHEMISTRYMAX LOGO - LEFT
-        ========================== */}
+        {/* LOGO */}
         <Link
           href="/"
           className="mr-8 flex shrink-0 items-center"
@@ -55,28 +60,29 @@ export function Header() {
           />
         </Link>
 
-        {/* =========================
-            DESKTOP NAVIGATION
-        ========================== */}
+        {/* ======================================
+            DESKTOP NAV
+        ======================================= */}
         <nav className="hidden flex-1 items-center justify-center gap-0.5 lg:flex">
           {primaryNav.map((item) => (
             <div
               key={item.label}
               className="relative"
-              onMouseEnter={() =>
-                item.children &&
-                setOpenDropdown(item.label)
-              }
-              onMouseLeave={() =>
-                setOpenDropdown(null)
-              }
+              onMouseEnter={() => {
+                if (item.children) {
+                  setOpenDropdown(item.label);
+                }
+              }}
+              onMouseLeave={() => {
+                setOpenDropdown(null);
+              }}
             >
               {item.children ? (
                 <button
+                  type="button"
                   className={cn(
                     'nav-link',
-                    isActive(item.to) &&
-                      'nav-link-active'
+                    isActive(item.to) && 'nav-link-active'
                   )}
                   onClick={() =>
                     setOpenDropdown(
@@ -91,7 +97,13 @@ export function Header() {
                 >
                   {item.label}
 
-                  <ChevronDown className="h-3.5 w-3.5" />
+                  <ChevronDown
+                    className={cn(
+                      'h-3.5 w-3.5 transition-transform',
+                      openDropdown === item.label &&
+                        'rotate-180'
+                    )}
+                  />
                 </button>
               ) : (
                 <Link
@@ -106,30 +118,58 @@ export function Header() {
                 </Link>
               )}
 
-              {/* DROPDOWN */}
+              {/* ======================================
+                  DROPDOWN
+              ======================================= */}
               {item.children &&
                 openDropdown === item.label && (
-                  <div className="absolute left-0 top-full w-64 pt-1">
-                    <div className="card p-2 shadow-lift">
-                      {item.children.map(
-                        (child) => (
+                  <div className="absolute left-0 top-full z-50 w-64 pt-1">
+
+                    <div className="header-dropdown-box rounded-lg p-2">
+
+                      {/* ----------------------------------
+                          FSc / MDCAT / ECAT MAIN PAGE
+                      ----------------------------------- */}
+                      {parentLabel(item.label) && (
+                        <>
+                          <Link
+                            href={item.to}
+                            className="header-parent-link block rounded-md px-3 py-2.5"
+                          >
+                            <span className="block text-sm font-semibold">
+                              {parentLabel(item.label)}
+                            </span>
+                          </Link>
+
+                          <div className="header-dropdown-separator my-1" />
+                        </>
+                      )}
+
+                      {/* ----------------------------------
+                          ORIGINAL CHILD ITEMS
+
+                          Resources stays exactly like before.
+                      ----------------------------------- */}
+                      <div className="flex flex-col gap-0.5">
+                        {item.children.map((child) => (
                           <Link
                             key={child.to}
                             href={child.to}
-                            className="block rounded-md px-3 py-2 text-sm text-ink-muted transition-colors hover:bg-brand-50 hover:text-brand-700"
+                            className="header-child-link block rounded-md px-3 py-2"
                           >
-                            <span className="font-medium text-ink">
+                            <span className="block text-sm font-medium">
                               {child.label}
                             </span>
 
                             {child.desc && (
-                              <span className="mt-0.5 block text-xs text-ink-light">
+                              <span className="header-child-description mt-0.5 block text-xs leading-4">
                                 {child.desc}
                               </span>
                             )}
                           </Link>
-                        )
-                      )}
+                        ))}
+                      </div>
+
                     </div>
                   </div>
                 )}
@@ -137,21 +177,18 @@ export function Header() {
           ))}
         </nav>
 
-        {/* =========================
-            RIGHT ACTIONS
-        ========================== */}
+        {/* ======================================
+            RIGHT SIDE
+        ======================================= */}
         <div className="ml-auto flex shrink-0 items-center gap-2">
-
-          {/* Search */}
           <Link
             href="/search"
             aria-label="Search"
-            className="flex h-9 w-9 items-center justify-center rounded-lg text-ink-muted transition-colors hover:bg-brand-50 hover:text-brand-700"
+            className="header-search flex h-9 w-9 items-center justify-center rounded-lg transition-colors"
           >
             <Search className="h-5 w-5" />
           </Link>
 
-          {/* Online Tuition */}
           <Link
             href="/online-tuition"
             className="btn-gold btn-sm hidden sm:inline-flex"
@@ -159,13 +196,12 @@ export function Header() {
             Online Tuition
           </Link>
 
-          {/* Mobile menu button */}
           <button
             type="button"
             onClick={() =>
               setMobileOpen(!mobileOpen)
             }
-            className="flex h-9 w-9 items-center justify-center rounded-lg text-ink hover:bg-brand-50 lg:hidden"
+            className="header-menu-button flex h-9 w-9 items-center justify-center rounded-lg lg:hidden"
             aria-label="Toggle menu"
             aria-expanded={mobileOpen}
           >
@@ -178,11 +214,12 @@ export function Header() {
         </div>
       </div>
 
-      {/* =========================
-          MOBILE NAVIGATION
-      ========================== */}
+      {/* ======================================
+          MOBILE NAV
+      ======================================= */}
       {mobileOpen && (
-        <div className="border-t border-line bg-cream lg:hidden">
+        <div className="header-mobile-area lg:hidden">
+
           <nav className="mx-auto flex max-h-[calc(100vh-4rem)] w-full max-w-[1500px] flex-col gap-1 overflow-y-auto px-4 py-3 sm:px-6">
 
             {primaryNav.map((item) => (
@@ -194,48 +231,65 @@ export function Header() {
                       type="button"
                       onClick={() =>
                         setOpenDropdown(
-                          openDropdown ===
-                            item.label
+                          openDropdown === item.label
                             ? null
                             : item.label
                         )
                       }
-                      className="flex w-full items-center justify-between rounded-md px-3 py-2 text-sm font-medium text-ink hover:bg-brand-50"
+                      className="header-mobile-dropdown-button flex w-full items-center justify-between rounded-md px-3 py-2 text-sm font-medium"
                     >
                       {item.label}
 
                       <ChevronDown
                         className={cn(
                           'h-4 w-4 transition-transform',
-                          openDropdown ===
-                            item.label &&
+                          openDropdown === item.label &&
                             'rotate-180'
                         )}
                       />
                     </button>
 
-                    {openDropdown ===
-                      item.label && (
-                      <div className="flex flex-col gap-0.5 pl-4">
+                    {openDropdown === item.label && (
+                      <div className="flex flex-col gap-1 py-1 pl-4">
 
-                        <Link
-                          href={item.to}
-                          className="rounded-md px-3 py-1.5 text-sm font-medium text-brand-700 hover:bg-brand-50"
-                        >
-                          View all
-                        </Link>
-
-                        {item.children.map(
-                          (child) => (
-                            <Link
-                              key={child.to}
-                              href={child.to}
-                              className="rounded-md px-3 py-1.5 text-sm text-ink-muted hover:bg-brand-50 hover:text-brand-700"
-                            >
-                              {child.label}
-                            </Link>
-                          )
+                        {/* FSc / MDCAT / ECAT MAIN PAGE */}
+                        {parentLabel(item.label) && (
+                          <Link
+                            href={item.to}
+                            className="header-mobile-parent block rounded-md px-3 py-2 text-sm font-semibold"
+                          >
+                            {parentLabel(item.label)}
+                          </Link>
                         )}
+
+                        {/* For Resources and any other dropdown */}
+                        {!parentLabel(item.label) && (
+                          <Link
+                            href={item.to}
+                            className="header-mobile-parent block rounded-md px-3 py-2 text-sm font-semibold"
+                          >
+                            View all
+                          </Link>
+                        )}
+
+                        {item.children.map((child) => (
+                          <Link
+                            key={child.to}
+                            href={child.to}
+                            className="header-mobile-child block rounded-md px-3 py-2 text-sm"
+                          >
+                            <span className="block font-medium">
+                              {child.label}
+                            </span>
+
+                            {child.desc && (
+                              <span className="header-child-description mt-0.5 block text-xs">
+                                {child.desc}
+                              </span>
+                            )}
+                          </Link>
+                        ))}
+
                       </div>
                     )}
                   </>
@@ -243,15 +297,15 @@ export function Header() {
                   <Link
                     href={item.to}
                     className={cn(
-                      'block rounded-md px-3 py-2 text-sm font-medium hover:bg-brand-50',
-                      isActive(item.to)
-                        ? 'text-brand-700'
-                        : 'text-ink'
+                      'header-mobile-normal block rounded-md px-3 py-2 text-sm font-medium',
+                      isActive(item.to) &&
+                        'header-mobile-normal-active'
                     )}
                   >
                     {item.label}
                   </Link>
                 )}
+
               </div>
             ))}
 
@@ -261,6 +315,7 @@ export function Header() {
             >
               Online Tuition
             </Link>
+
           </nav>
         </div>
       )}
