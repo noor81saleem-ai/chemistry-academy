@@ -155,13 +155,30 @@ export type FundamentalsUnit = {
   hasContent?: boolean;
 };
 
-export const fundamentalsUnits: FundamentalsUnit[] = Array.from({ length: 20 }, (_, i) => {
-  const slug = `unit-${String(i + 1).padStart(2, '0')}`;
-  const isSample = i === 2;
-  return {
-    slug,
-    number: i + 1,
-    title: isSample ? 'Atoms and Molecules' : `Unit ${String(i + 1).padStart(2, '0')} — [Editable Title]`,
-    hasContent: isSample,
-  };
-});
+export const fundamentalsUnits: FundamentalsUnit[] = Array.from(
+  { length: 20 },
+  (_, i) => {
+    const slug = `unit-${String(i + 1).padStart(2, '0')}`;
+
+    const unitTitles: Record<number, string> = {
+      1: 'Basic Concepts of Chemistry',
+      2: 'Atomic Structure',
+      3: 'Periodic table',
+      4: 'Structure of Molecules',
+      5: 'Physical States of Matter',
+      6: 'Solution',
+      7: 'Electrochemistry',
+      8: 'Chemical Reactivity',
+    };
+
+    return {
+      slug,
+      number: i + 1,
+      title:
+        unitTitles[i + 1] ??
+        `Unit ${String(i + 1).padStart(2, '0')} — [Editable Title]`,
+
+      hasContent: [1, 2, 3, 4, 5, 6, 7, 8].includes(i + 1),
+    };
+  }
+);
