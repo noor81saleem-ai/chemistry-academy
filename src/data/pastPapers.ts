@@ -1,37 +1,281 @@
+export type PastPaperExam = 'Matric' | 'FSc' | 'MDCAT' | 'ECAT';
+
+export type PastPaperGrade = 9 | 10 | 11 | 12;
+
 export type PastPaperEntry = {
   id: string;
-  exam: 'FSc' | 'MDCAT' | 'ECAT';
-  grade?: 11 | 12;
+  exam: PastPaperExam;
+  grade?: PastPaperGrade;
   board?: string;
   year: number;
   title: string;
-  solved: boolean;
-  hasVideo?: boolean;
+  pdfUrl?: string;
   downloadable?: boolean;
 };
 
 export const pastPapers: PastPaperEntry[] = [
-  { id: 'fsc-11-fb-2024', exam: 'FSc', grade: 11, board: 'Federal Board', year: 2024, title: 'Federal Board Grade 11 Chemistry 2024', solved: true, hasVideo: true },
-  { id: 'fsc-11-fb-2023', exam: 'FSc', grade: 11, board: 'Federal Board', year: 2023, title: 'Federal Board Grade 11 Chemistry 2023', solved: true, hasVideo: false },
-  { id: 'fsc-11-ajk-2023', exam: 'FSc', grade: 11, board: 'AJK Board', year: 2023, title: 'AJK Board Grade 11 Chemistry 2023', solved: false, hasVideo: false },
-  { id: 'fsc-11-fb-2022', exam: 'FSc', grade: 11, board: 'Federal Board', year: 2022, title: 'Federal Board Grade 11 Chemistry 2022', solved: true, hasVideo: true },
-  { id: 'fsc-12-fb-2024', exam: 'FSc', grade: 12, board: 'Federal Board', year: 2024, title: 'Federal Board Grade 12 Chemistry 2024', solved: true, hasVideo: true },
-  { id: 'fsc-12-fb-2023', exam: 'FSc', grade: 12, board: 'Federal Board', year: 2023, title: 'Federal Board Grade 12 Chemistry 2023', solved: false, hasVideo: false },
-  { id: 'fsc-12-ajk-2023', exam: 'FSc', grade: 12, board: 'AJK Board', year: 2023, title: 'AJK Board Grade 12 Chemistry 2023', solved: true, hasVideo: false },
-  { id: 'mdcat-2024', exam: 'MDCAT', year: 2024, title: 'MDCAT Chemistry 2024 — Full Paper', solved: true, hasVideo: true },
-  { id: 'mdcat-2023', exam: 'MDCAT', year: 2023, title: 'MDCAT Chemistry 2023 — Full Paper', solved: true, hasVideo: true },
-  { id: 'mdcat-2022', exam: 'MDCAT', year: 2022, title: 'MDCAT Chemistry 2022 — Topic-wise MCQs', solved: false, hasVideo: false },
-  { id: 'ecat-2024', exam: 'ECAT', year: 2024, title: 'ECAT Chemistry 2024 — Full Paper', solved: true, hasVideo: true },
-  { id: 'ecat-2023', exam: 'ECAT', year: 2023, title: 'ECAT Chemistry 2023 — Full Paper', solved: false, hasVideo: false },
+  // =========================================================
+  // GRADE 9 CHEMISTRY
+  // Latest year first
+  // =========================================================
+
+  {
+    id: 'grade-9-chemistry-2026',
+    exam: 'Matric',
+    grade: 9,
+    year: 2026,
+    title: 'Grade 9 Chemistry Past Paper 2026',
+  },
+  {
+    id: 'grade-9-chemistry-2025',
+    exam: 'Matric',
+    grade: 9,
+    year: 2025,
+    title: 'Grade 9 Chemistry Past Paper 2025',
+  },
+  {
+    id: 'grade-9-chemistry-2024',
+    exam: 'Matric',
+    grade: 9,
+    year: 2024,
+    title: 'Grade 9 Chemistry Past Paper 2024',
+    pdfUrl: '/past-papers/grade-9/chemistry-2024.pdf',
+    downloadable: true,
+  },
+  {
+    id: 'grade-9-chemistry-2023',
+    exam: 'Matric',
+    grade: 9,
+    year: 2023,
+    title: 'Grade 9 Chemistry Past Paper 2023',
+  },
+  {
+    id: 'grade-9-chemistry-2022',
+    exam: 'Matric',
+    grade: 9,
+    year: 2022,
+    title: 'Grade 9 Chemistry Past Paper 2022',
+  },
+
+  // =========================================================
+  // GRADE 10 CHEMISTRY
+  // Latest year first
+  // =========================================================
+
+  {
+    id: 'grade-10-chemistry-2026',
+    exam: 'Matric',
+    grade: 10,
+    year: 2026,
+    title: 'Grade 10 Chemistry Past Paper 2026',
+  },
+  {
+    id: 'grade-10-chemistry-2025',
+    exam: 'Matric',
+    grade: 10,
+    year: 2025,
+    title: 'Grade 10 Chemistry Past Paper 2025',
+  },
+  {
+    id: 'grade-10-chemistry-2024',
+    exam: 'Matric',
+    grade: 10,
+    year: 2024,
+    title: 'Grade 10 Chemistry Past Paper 2024',
+  },
+  {
+    id: 'grade-10-chemistry-2023',
+    exam: 'Matric',
+    grade: 10,
+    year: 2023,
+    title: 'Grade 10 Chemistry Past Paper 2023',
+  },
+  {
+    id: 'grade-10-chemistry-2022',
+    exam: 'Matric',
+    grade: 10,
+    year: 2022,
+    title: 'Grade 10 Chemistry Past Paper 2022',
+  },
+
+  // =========================================================
+  // FSC GRADE 11 CHEMISTRY
+  // Latest year first
+  // =========================================================
+
+  {
+    id: 'fsc-grade-11-chemistry-2026',
+    exam: 'FSc',
+    grade: 11,
+    year: 2026,
+    title: 'FSc Grade 11 Chemistry Past Paper 2026',
+  },
+  {
+    id: 'fsc-grade-11-chemistry-2025',
+    exam: 'FSc',
+    grade: 11,
+    year: 2025,
+    title: 'FSc Grade 11 Chemistry Past Paper 2025',
+  },
+  {
+    id: 'fsc-grade-11-chemistry-2024',
+    exam: 'FSc',
+    grade: 11,
+    year: 2024,
+    title: 'FSc Grade 11 Chemistry Past Paper 2024',
+  },
+  {
+    id: 'fsc-grade-11-chemistry-2023',
+    exam: 'FSc',
+    grade: 11,
+    year: 2023,
+    title: 'FSc Grade 11 Chemistry Past Paper 2023',
+  },
+  {
+    id: 'fsc-grade-11-chemistry-2022',
+    exam: 'FSc',
+    grade: 11,
+    year: 2022,
+    title: 'FSc Grade 11 Chemistry Past Paper 2022',
+  },
+
+  // =========================================================
+  // FSC GRADE 12 CHEMISTRY
+  // Latest year first
+  // =========================================================
+
+  {
+    id: 'fsc-grade-12-chemistry-2026',
+    exam: 'FSc',
+    grade: 12,
+    year: 2026,
+    title: 'FSc Grade 12 Chemistry Past Paper 2026',
+  },
+  {
+    id: 'fsc-grade-12-chemistry-2025',
+    exam: 'FSc',
+    grade: 12,
+    year: 2025,
+    title: 'FSc Grade 12 Chemistry Past Paper 2025',
+  },
+  {
+    id: 'fsc-grade-12-chemistry-2024',
+    exam: 'FSc',
+    grade: 12,
+    year: 2024,
+    title: 'FSc Grade 12 Chemistry Past Paper 2024',
+  },
+  {
+    id: 'fsc-grade-12-chemistry-2023',
+    exam: 'FSc',
+    grade: 12,
+    year: 2023,
+    title: 'FSc Grade 12 Chemistry Past Paper 2023',
+  },
+  {
+    id: 'fsc-grade-12-chemistry-2022',
+    exam: 'FSc',
+    grade: 12,
+    year: 2022,
+    title: 'FSc Grade 12 Chemistry Past Paper 2022',
+  },
+
+  // =========================================================
+  // MDCAT CHEMISTRY
+  // Latest year first
+  // =========================================================
+
+  {
+    id: 'mdcat-chemistry-2026',
+    exam: 'MDCAT',
+    year: 2026,
+    title: 'MDCAT Chemistry Past Paper 2026',
+  },
+  {
+    id: 'mdcat-chemistry-2025',
+    exam: 'MDCAT',
+    year: 2025,
+    title: 'MDCAT Chemistry Past Paper 2025',
+  },
+  {
+    id: 'mdcat-chemistry-2024',
+    exam: 'MDCAT',
+    year: 2024,
+    title: 'MDCAT Chemistry Past Paper 2024',
+  },
+  {
+    id: 'mdcat-chemistry-2023',
+    exam: 'MDCAT',
+    year: 2023,
+    title: 'MDCAT Chemistry Past Paper 2023',
+  },
+  {
+    id: 'mdcat-chemistry-2022',
+    exam: 'MDCAT',
+    year: 2022,
+    title: 'MDCAT Chemistry Past Paper 2022',
+  },
+
+  // =========================================================
+  // ECAT CHEMISTRY
+  // Latest year first
+  // =========================================================
+
+  {
+    id: 'ecat-chemistry-2026',
+    exam: 'ECAT',
+    year: 2026,
+    title: 'ECAT Chemistry Past Paper 2026',
+  },
+  {
+    id: 'ecat-chemistry-2025',
+    exam: 'ECAT',
+    year: 2025,
+    title: 'ECAT Chemistry Past Paper 2025',
+  },
+  {
+    id: 'ecat-chemistry-2024',
+    exam: 'ECAT',
+    year: 2024,
+    title: 'ECAT Chemistry Past Paper 2024',
+  },
+  {
+    id: 'ecat-chemistry-2023',
+    exam: 'ECAT',
+    year: 2023,
+    title: 'ECAT Chemistry Past Paper 2023',
+  },
+  {
+    id: 'ecat-chemistry-2022',
+    exam: 'ECAT',
+    year: 2022,
+    title: 'ECAT Chemistry Past Paper 2022',
+  },
 ];
 
-export function filterPapers(opts: { exam?: string; grade?: number; board?: string; year?: number; solved?: boolean }): PastPaperEntry[] {
-  return pastPapers.filter((p) => {
-    if (opts.exam && p.exam !== opts.exam) return false;
-    if (opts.grade && p.grade !== opts.grade) return false;
-    if (opts.board && p.board !== opts.board) return false;
-    if (opts.year && p.year !== opts.year) return false;
-    if (opts.solved !== undefined && p.solved !== opts.solved) return false;
+export function filterPapers(options: {
+  exam?: PastPaperExam;
+  grade?: PastPaperGrade;
+  board?: string;
+  year?: number;
+}): PastPaperEntry[] {
+  return pastPapers.filter((paper) => {
+    if (options.exam && paper.exam !== options.exam) {
+      return false;
+    }
+
+    if (options.grade && paper.grade !== options.grade) {
+      return false;
+    }
+
+    if (options.board && paper.board !== options.board) {
+      return false;
+    }
+
+    if (options.year && paper.year !== options.year) {
+      return false;
+    }
+
     return true;
   });
 }

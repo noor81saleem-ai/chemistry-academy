@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -47,17 +46,11 @@ export function Header() {
         {/* LOGO */}
         <Link
           href="/"
-          className="mr-8 flex shrink-0 items-center"
-          aria-label="ChemistryMax Home"
+          className="navbar-logo mr-5 flex shrink-0 items-center gap-2.5 lg:mr-6"
+          aria-label="Noor Saleem Home"
         >
-          <Image
-            src="/chemistrymax-logo.png"
-            alt="ChemistryMax"
-            width={290}
-            height={98}
-            priority
-            className="h-[100px] w-auto object-contain"
-          />
+          <span className="logo-monogram" aria-hidden="true">NS</span>
+          <span className="logo-text">Noor Saleem</span>
         </Link>
 
         {/* ======================================
@@ -191,7 +184,7 @@ export function Header() {
 
           <Link
             href="/online-tuition"
-            className="btn-gold btn-sm hidden sm:inline-flex"
+            className="btn-primary btn-sm hidden sm:inline-flex"
           >
             Online Tuition
           </Link>
@@ -311,7 +304,7 @@ export function Header() {
 
             <Link
               href="/online-tuition"
-              className="btn-gold mt-2 w-full"
+              className="btn-primary mt-2 w-full"
             >
               Online Tuition
             </Link>

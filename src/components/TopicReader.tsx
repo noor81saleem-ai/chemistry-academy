@@ -18,14 +18,14 @@ export function TopicReader({
   children: React.ReactNode;
 }) {
   return (
-    <div>
+    <div className="topic-reader">
       <div className="mb-6">
         <Link href={backHref} className="inline-flex items-center gap-2 text-sm font-medium text-ink-muted hover:text-brand-700 transition-colors">
           <ArrowLeft className="h-4 w-4" />
           {backLabel}
         </Link>
       </div>
-      <div className="mb-6 pb-6 border-b border-line">
+      <div className="topic-reader-heading mb-6">
         <h1 className="text-3xl font-serif font-semibold text-ink">{title}</h1>
         {subtitle && <p className="mt-2 text-ink-muted">{subtitle}</p>}
       </div>

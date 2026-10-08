@@ -4,7 +4,7 @@ import { footerNav, site } from '@/data/site';
 
 export function Footer() {
   return (
-    <footer className="border-t border-line bg-brand-50/30 mt-16">
+    <footer className="site-footer mt-0">
       <div className="container-wide py-12">
         <div className="grid gap-8 md:grid-cols-4 lg:grid-cols-5">
           {/* Brand */}
@@ -39,7 +39,7 @@ export function Footer() {
               </h4>
               <ul className="flex flex-col gap-2">
                 {links.map((link) => (
-                  <li key={link.to}>
+                  <li key={`${link.to}-${link.label}`}>
                     <Link href={link.to} className="text-sm text-ink-muted hover:text-brand-700 transition-colors">
                       {link.label}
                     </Link>

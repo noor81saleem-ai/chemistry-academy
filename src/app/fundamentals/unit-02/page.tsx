@@ -147,7 +147,7 @@ function QuestionCard({
 function RutherfordExperimentDiagram() {
   return (
     <div className="my-6 overflow-hidden rounded-xl border border-line bg-paper p-4">
-      <div className="mb-3 text-sm font-semibold">Rutherford's α-particle scattering experiment</div>
+      <div className="mb-3 text-sm font-semibold">Rutherford&apos;s α-particle scattering experiment</div>
  
       {/* Apparatus */}
       <svg viewBox="0 0 900 340" className="h-auto w-full" role="img" aria-label="Rutherford alpha particle scattering apparatus">
@@ -428,8 +428,8 @@ const shortQuestions = [
     question: 'Who discovered isotopes? What is the origin of word "isotope"?',
     answer: (
       <p>
-        Isotopes were discovered by Frederick Soddy. The word "isotope" comes from the Greek "isos" meaning
-        same and "topos" meaning place. It means isotopes belong to the same place (element) in the periodic table.
+        Isotopes were discovered by Frederick Soddy. The word &quot;isotope&quot; comes from the Greek &quot;isos&quot; meaning
+        same and &quot;topos&quot; meaning place. It means isotopes belong to the same place (element) in the periodic table.
       </p>
     ),
   },
@@ -544,7 +544,7 @@ const shortQuestions = [
     answer: (
       <>
         <p>
-          The "n" value of a shell tells us the number of sub-shells in that particular shell.
+          The &quot;n&quot; value of a shell tells us the number of sub-shells in that particular shell.
         </p>
         <p>
           K-shell has n = 1, so it has one sub-shell: 1s. L-shell has n = 2, so it has two sub-shells:
@@ -560,7 +560,7 @@ const shortQuestions = [
     answer: (
       <p>
         The arrangement (distribution) of electrons in different sub-shells around a nucleus is called electronic
-        configuration. When writing the electronic configuration of an element, the "n" value of a shell is always
+        configuration. When writing the electronic configuration of an element, the &quot;n&quot; value of a shell is always
         placed before the symbol of its corresponding sub-shell.
       </p>
     ),
@@ -577,7 +577,7 @@ const longQuestions = [
         <p>
           In 1911, Rutherford bombarded alpha (α) particles on a very thin gold foil about 0.0004 cm thick.
           He obtained alpha (α) particles from the disintegration (decay) of polonium. Alpha (α) particles
-          are helium nuclei (<Chem>He<sup>2+</sup></Chem>) having a "+2" charge.
+          are helium nuclei (<Chem>He<sup>2+</sup></Chem>) having a &quot;+2&quot; charge.
         </p>
         <h3 className="text-lg font-semibold">Observations</h3>
         <PointList
@@ -649,7 +649,7 @@ const longQuestions = [
           items={[
             <>Electrons revolve around the nucleus in fixed circular orbits. Each orbit has a fixed amount of energy, so orbits are also called energy levels.</>,
             <>The energy of an electron in a given orbit is directly proportional to its distance from the nucleus.</>,
-            <>Electrons can only occupy orbits whose angular momentum is an integral multiple of h/2π, where "h" is Planck's constant (6.626 × 10<sup>−34</sup> J·s).</>,
+            <>Electrons can only occupy orbits whose angular momentum is an integral multiple of h/2π, where &quot;h&quot; is Planck&apos;s constant (6.626 × 10<sup>−34</sup> J·s).</>,
             <>The energy of an electron remains constant while it stays in a particular orbit. Energy is absorbed when an electron jumps from a lower to a higher energy orbit, and energy is emitted when an electron falls from a higher to a lower energy orbit.</>,
             <>The energy of the light absorbed or emitted equals the difference between the energies of the two orbits.</>,
           ]}
@@ -708,7 +708,7 @@ const longQuestions = [
     answer: (
       <>
         <p>
-          Bohr removed the two defects of Rutherford's atomic model by proposing the stability of the atom and
+          Bohr removed the two defects of Rutherford&apos;s atomic model by proposing the stability of the atom and
           explaining the line spectrum, as follows.
         </p>
         <PointList
@@ -726,9 +726,9 @@ const longQuestions = [
     tag: 'Society, Technology and Science',
     answer: (
       <p>
-        Dalton's atomic theory was widely accepted because it explained the data from many experiments. But the
-        discovery of sub-atomic particles and isotopes proved some ideas of Dalton's atomic theory wrong. However,
-        scientists did not reject Dalton's atomic theory outright — they revised it in light of new discoveries.
+        Dalton&apos;s atomic theory was widely accepted because it explained the data from many experiments. But the
+        discovery of sub-atomic particles and isotopes proved some ideas of Dalton&apos;s atomic theory wrong. However,
+        scientists did not reject Dalton&apos;s atomic theory outright — they revised it in light of new discoveries.
         This is how testing (experimentation) brings about change in already-proposed theories.
       </p>
     ),
@@ -1160,11 +1160,11 @@ const exerciseLong = [
     question: 'Describe the contribution that Rutherford made to the development of the atomic theory.',
     answer: (
       <>
-        <p>Rutherford's gold-foil experiment and atomic model made a major contribution to atomic theory.</p>
+        <p>Rutherford&apos;s gold-foil experiment and atomic model made a major contribution to atomic theory.</p>
         <PointList
           items={[
             <>An atom is electrically neutral because it has an equal number of electrons and protons.</>,
-            <>Almost all of an atom's mass is concentrated in a tiny, positively charged central region called the nucleus.</>,
+            <>Almost all of an atom&apos;s mass is concentrated in a tiny, positively charged central region called the nucleus.</>,
             <>Electrons revolve around the nucleus in circular paths called orbits, just as planets revolve around the sun.</>,
             <>The centripetal force acting on a revolving electron equals the electrostatic force of attraction between the electron and the nucleus.</>,
           ]}
@@ -1179,8 +1179,8 @@ const exerciseLong = [
     answer: (
       <PointList
         items={[
-          <>Rutherford's model implied that a revolving electron should continuously lose energy and eventually spiral into the nucleus. Bohr proposed instead that an electron in a given orbit has fixed, constant energy.</>,
-          <>Rutherford's model implied continuous emission of energy and hence a continuous spectrum. Bohr's model correctly predicted discontinuous (quantized) emission, producing a line spectrum.</>,
+          <>Rutherford&apos;s model implied that a revolving electron should continuously lose energy and eventually spiral into the nucleus. Bohr proposed instead that an electron in a given orbit has fixed, constant energy.</>,
+          <>Rutherford&apos;s model implied continuous emission of energy and hence a continuous spectrum. Bohr&apos;s model correctly predicted discontinuous (quantized) emission, producing a line spectrum.</>,
         ]}
       />
     ),
@@ -1192,7 +1192,7 @@ const exerciseLong = [
       <>
         <p>
           Each shell is further divided into smaller regions called sub-shells. The number of sub-shells present
-          in a given shell equals the "n" value of that shell.
+          in a given shell equals the &quot;n&quot; value of that shell.
         </p>
         <ShellSubshellDiagram />
       </>
@@ -1244,9 +1244,9 @@ const exerciseLong = [
     question: 'How does testing prevailing theories bring about changes in them?',
     answer: (
       <p>
-        Dalton's atomic theory was widely accepted because it explained data from many experiments. But the
-        discovery of sub-atomic particles and isotopes proved some ideas of Dalton's atomic theory wrong. However,
-        scientists did not reject Dalton's atomic theory outright — they revised it in light of new discoveries.
+        Dalton&apos;s atomic theory was widely accepted because it explained data from many experiments. But the
+        discovery of sub-atomic particles and isotopes proved some ideas of Dalton&apos;s atomic theory wrong. However,
+        scientists did not reject Dalton&apos;s atomic theory outright — they revised it in light of new discoveries.
       </p>
     ),
   },
@@ -1256,8 +1256,8 @@ const exerciseLong = [
     answer: (
       <p>
         Rutherford carried out extensive experimental work and used it to present his atomic model. Later, Bohr
-        identified the weaknesses in Rutherford's model — based on Rutherford's own experimental results — and
-        proposed a refined model, now called Bohr's atomic model.
+        identified the weaknesses in Rutherford&apos;s model — based on Rutherford&apos;s own experimental results — and
+        proposed a refined model, now called Bohr&apos;s atomic model.
       </p>
     ),
   },
@@ -1522,5 +1522,4 @@ export default function UnitTwoPage() {
   );
 }
  
-
 
